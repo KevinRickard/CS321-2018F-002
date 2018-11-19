@@ -1,11 +1,14 @@
 
 import java.util.Random;
 
-/**
- *
+ /**
  * @author Adam Denton
+ * Basic Ghoul class, which extends NPC
+ * The ghoul roams and reacts to players actions upon the ghoul.
+ * Specifically poke the ghoul giving items to the ghoul.
+ * Once a ghoul has been poked enough it will drag the aggressor off
+ * to the clock tower.
  */
-
 public class Ghoul extends NPC {
 
     // anger level
@@ -53,6 +56,7 @@ public class Ghoul extends NPC {
         }
     }
 
+    // Drags a player to the clock tower and removes an item from their inventory
     private void dragPlayer(Player player) {
         synchronized (player) {
             String item = player.removeRandomItem();
@@ -102,4 +106,4 @@ public class Ghoul extends NPC {
         return r.nextInt((max - min) + 1) + min;
    }
    
-} //EOF Ghoul.java
+} //EOF Ghoul

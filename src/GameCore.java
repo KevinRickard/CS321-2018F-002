@@ -74,6 +74,7 @@ public class GameCore implements GameCoreInterface {
             nighttimeNpcSet.add(new Ghost(this, "Ghost" + (i + NUM_OF_GHOULS), i, GHOST_AI_PERIOD_SECONDS_BASE + i, new File("GhostSayings.txt")));
         }
 
+        // Adding all the NPCS to npcSet
         npcSet.addAll(Arrays.asList(new Ghoul(this, "GhoulOG", 2, 90000),
                                     new Spirit(this, "Happy Spirit", 1, 20, Spirits.HAPPY),
                                     new Spirit(this, "Sad Spirit", 3, 25, Spirits.SAD),
@@ -85,6 +86,7 @@ public class GameCore implements GameCoreInterface {
                                     new Spirit(this, "Tired Spirit", 2, 15, Spirits.TIRED),
                                     new Spirit(this, "Clumsy Spirit", 2, 15, Spirits.CLUMSY)));
 
+        // Creating a new thread that will handle all the NPCs actions
         Thread npcThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -128,6 +130,7 @@ public class GameCore implements GameCoreInterface {
         objectThread.start();
 
 
+        // Day Night Cycle thread, 15 minutes for Day and Night
         timeOfDay = DAY;
         Thread dayNightCycleThread = new Thread(new Runnable() {
             @Override

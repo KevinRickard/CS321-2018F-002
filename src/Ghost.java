@@ -1,10 +1,8 @@
 import java.util.*;
 import java.io.*;
+
 /**
- *@author: Thomas Washington
- *
- */
-/**
+ * @author: Thomas Washington
  * Basic Ghost class, which extends NPC
  * Works the same, but overrides methods that broadcast movements.
  * Also says a line from time to time.
@@ -13,6 +11,7 @@ public class Ghost extends NPC{
   
   private ArrayList<String> lines;
   
+  // Ghost constructor
   public Ghost(GameCore gameCore, String name, int roomId, long aiPeriodSeconds, File sayings){
     super(gameCore, name, roomId, aiPeriodSeconds);
     lines = new ArrayList<String>();
@@ -29,10 +28,12 @@ public class Ghost extends NPC{
     }  
   }
   
+  // Getter for lines in sayings.txt file
   public ArrayList<String> getLines(){
     return this.lines;
   }
   
+  // Getter for a certian line in sayings.txt
   public String getLine(int index){
     return getLines().get(index);
   }
@@ -48,6 +49,10 @@ public class Ghost extends NPC{
     getCurrentRoom().broadcast(message + ", said " + getName() + ".");
   }
   
+  /**
+   * The random movement of the Ghost to traverse the map
+   * @overrides
+   */
   @Override
   public void moveRandomly() {
     synchronized (this) {
@@ -63,4 +68,4 @@ public class Ghost extends NPC{
       this.broadcast();
     }
   }
-} //EOF Ghost.java 
+} //EOF Ghost
